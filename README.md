@@ -1,34 +1,32 @@
-README.md
+## README: Minted TokenIds Fetcher
 
-# 目次
-- [目次](#目次)
-- [コマンド](#コマンド)
-- [実行フロー](#実行フロー)
-- [実行環境](#実行環境)
-- [Nodejsについて](#nodejsについて)
-- [import文の注意](#import文の注意)
+このスクリプトは、指定されたNFTコントラクトの`minted`マッピングを使用して、すでに発行されているtokenIdを取得します。結果はJSON形式でファイルに出力されます。
 
-# コマンド
-- 実行
-  - `npm run start`
+### 前提条件
 
-# 実行フロー
-- `src/*`内のtypescriptをトランスコンパイルされる。
-- `dist/*`内にコンパイル済みのjsが生成される。
-- nodejsで`./dist/index.js`が実行される。
+- Node.jsがインストールされていること
+- ethers.jsライブラリがインストールされていること (`npm install ethers` でインストール可能)
 
+### 使い方
 
-# 実行環境
-- node: v18.12.1
-- typescript: 5.1.3
+1. スクリプトのあるディレクトリに移動します。
+2. 以下のコマンドを実行してスクリプトを起動します。
 
+```bash
+$ node start YOUR_INFURA_API_KEY YOUR_CONTRACT_ADDRESS
+```
 
-# Nodejsについて
-- Node.jsはGoogleのV8 JavaScriptエンジンを採用しています。
-- V8はECMAScript 2015（ES6）の[標準](https://nodejs.org/ja/docs/es6)に従ってJavaScriptのコードを解釈します。
+- `YOUR_INFURA_API_KEY` には、Infuraから取得したAPIキーを指定してください。
+- `YOUR_CONTRACT_ADDRESS` には、対象となるコントラクトのアドレスを指定してください。
 
+1. スクリプトが実行され、既に発行されているtokenIdがカレントディレクトリの`YOUR_CONTRACT_ADDRESS.json`という名前のファイルに保存されます。
 
-# import文の注意
-- `import { User } from "./user/user.js";`
-- tsファイルでもimport時は.jsとして読み込む。
-- トランスパイルした際にjsが拡張子を判断できないため。
+### 注意
+
+- このスクリプトは、最大10,000のtokenIdを走査します。この数はコントラクトによって異なる場合がありますので、必要に応じてスクリプトを修正してください。
+- Infura APIの制限に注意してください。大量のリクエストを短時間に送ると、API制限に達する可能性があります。
+- エラーや例外が発生した場合、コンソールに詳細が表示されます。
+
+### ライセンス
+
+このスクリプトはMITライセンスのもとで提供されます。詳細は[LICENSE](LICENSE)を参照してください。

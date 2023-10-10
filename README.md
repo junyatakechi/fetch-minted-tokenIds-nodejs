@@ -4,8 +4,17 @@
 
 ### 前提条件
 
+#### ソフトウェア:
+
 - Node.jsがインストールされていること
 - ethers.jsライブラリがインストールされていること (`npm install ethers` でインストール可能)
+
+#### スマートコントラクト:
+
+- 対象のスマートコントラクトは以下のインターフェイスを実装している必要があります：
+  - `function minted(uint) view returns (bool)`
+  - `function tokenByIndex(uint256) view returns (uint256)`
+  - `function totalSupply() view returns (uint256)`
 
 ### 使い方
 
@@ -13,13 +22,14 @@
 2. 以下のコマンドを実行してスクリプトを起動します。
 
 ```bash
-$ node start YOUR_INFURA_API_KEY YOUR_CONTRACT_ADDRESS
+$ node <script-name> YOUR_INFURA_API_KEY YOUR_CONTRACT_ADDRESS
 ```
 
+- `<script-name>` はスクリプトのファイル名を指定してください。
 - `YOUR_INFURA_API_KEY` には、Infuraから取得したAPIキーを指定してください。
 - `YOUR_CONTRACT_ADDRESS` には、対象となるコントラクトのアドレスを指定してください。
 
-1. スクリプトが実行され、既に発行されているtokenIdがカレントディレクトリの`YOUR_CONTRACT_ADDRESS.json`という名前のファイルに保存されます。
+3. スクリプトが実行され、既に発行されているtokenIdがカレントディレクトリの`YOUR_CONTRACT_ADDRESS.json`という名前のファイルに保存されます。
 
 ### 注意
 
